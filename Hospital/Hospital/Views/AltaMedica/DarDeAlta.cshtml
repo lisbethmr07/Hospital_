@@ -1,0 +1,159 @@
+﻿@model Hospital.Ingresos
+
+@{
+    ViewBag.Title = "Dar de alta";
+}
+
+<h2>Dar de Alta</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idIngreso)
+
+<div class="form-group">
+    <label class="control-label col-md-2">Paciente</label>
+    @*@Html.LabelFor(model => model.idPaciente, "idPaciente", htmlAttributes: new { @class = "control-label col-md-2" })*@
+<div class="col-md-10">
+    <input type="text" name="idIngreso" id="idIngreso" value="@Model.idIngreso" hidden />
+    <input type="text" name="idPaciente" id="idPaciente" value="@Model.idPaciente" hidden />
+    @Html.EditorFor(model => model.Pacientes.nombre, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.idPaciente, "", new { @class = "text-danger" })
+</div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-2">Habitacion</label>
+    @*@Html.LabelFor(model => model.idHabitacion, "idHabitacion", htmlAttributes: new { @class = "control-label col-md-2" })*@
+<div class="col-md-10">
+    <input type="text" name="idHabitacion" id="idHabitacion" value="@Model.idHabitacion" hidden />
+    @Html.EditorFor(model => model.Habitaciones.tipo, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.idHabitacion, "", new { @class = "text-danger" })
+</div>
+</div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha de Ingreso</label>
+        @*@Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10">
+        @*<input type="date" class="form-control" id="fecha" name="fecha" />*@
+        <input type="text" name="fechaIngreso" id="fechaIngreso" value="@Model.fecha" hidden />
+        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha de Salida</label>
+        @*@Html.LabelFor(model => model.fechaSalida, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            <input type="date" class="form-control" id="fechaSalida" name="fechaSalida" />
+            @*@Html.EditorFor(model => model.fechaSalida, new { htmlAttributes = new { @class = "form-control" } })*@
+            @*@Html.ValidationMessageFor(model => model.fechaSalida, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Monto</label>
+        @*@Html.LabelFor(model => model.monto, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            
+            <input type="text" class="form-control" id="monto" name="monto" value="" readonly />
+            @*@Html.EditorFor(model => model.monto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.monto, "", new { @class = "text-danger" })*@
+            <input type="button" class="form-control" name="calculoMonto" id="calculoMonto" value="Calcular monto" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" name="Alta" id="Alta" value="Dar de alta" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/moment.js"></script>
+<script>
+
+    $("#calculoMonto").click(function () {
+
+        f1 = $('#fechaIngreso').val().substr(0, 9);
+        f2 = $('#fechaSalida').val();
+
+        a = moment(f1).format();
+        b = a.substr(0, 10);
+
+        const date = b;
+        const [year, day, month] = date.split('-');
+
+        c= (year + "-" + month + "-" + day);
+
+        var fecha1 = moment(c);
+        var fecha2 = moment(f2);
+
+        var d = (fecha2.diff(fecha1, 'days'));
+
+        var TH = $('#idHabitacion').val();
+
+        if (TH = 1) {
+            $('#monto').val(d*100);
+        }
+        else if (TH = 2) {
+
+            $('#monto').val(d*200);
+        }
+        else {
+            $('#monto').val(d*300);
+        }
+
+    })
+
+    $("#Alta").click(function () {
+
+        var DatosA = {
+            idIngreso: $('#idIngreso').val(),
+            idPaciente: $('#idPaciente').val(),
+            idHabitacion: $('#idHabitacion').val(),
+            fechaIngreso: $('#fechaIngreso').val(),
+            fechaSalida: $('#fechaSalida').val(),
+            monto: $('#monto').val()
+        };
+        console.log(DatosA);
+        DatosA = JSON.stringify({ DatosA: DatosA });
+
+        $.ajax({
+            dataType: "application/json",
+            url: "/AltaMedica/DarDeAlta",
+            type: "POST",
+            data: DatosA,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                alert('Dado de alta');
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Error!!');
+            },
+            complete: function () {
+                var link = "@Url.Action("Index", "AltaMedica", null)";
+                window.location.href = link;
+            }
+        });
+    })
+
+</script>
+}
+

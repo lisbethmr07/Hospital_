@@ -7,57 +7,54 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo", "Indexcreate")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fechaIngreso)
+            @Html.DisplayNameFor(model => model.Pacientes.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaSalida)
+            Tipo de Habitacion
+        </th>
+        <th>
+            Fecha de Ingreso
+        </th>
+        <th>
+            Fecha de Salida
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.monto)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Habitaciones.tipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ingresos.idIngreso)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pacientes.cedula)
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaSalida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.monto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Habitaciones.tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ingresos.idIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pacientes.cedula)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idAlta }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idAlta }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idAlta })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pacientes.nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Habitaciones.tipo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fechaIngreso, "ShortDateTime")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fechaSalida, "ShortDateTime")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.monto)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.idAlta }) |
+        @Html.ActionLink("Details", "Details", new { id = item.idAlta }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.idAlta })
+    </td>
+</tr>
 }
 
 </table>

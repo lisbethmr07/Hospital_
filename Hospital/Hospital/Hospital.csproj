@@ -212,6 +212,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -226,11 +227,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\AltaMedica\Create.cshtml" />
-    <Content Include="Views\AltaMedica\Delete.cshtml" />
-    <Content Include="Views\AltaMedica\Details.cshtml" />
-    <Content Include="Views\AltaMedica\Edit.cshtml" />
-    <Content Include="Views\AltaMedica\Index.cshtml" />
     <Content Include="Views\Habitaciones\Create.cshtml" />
     <Content Include="Views\Habitaciones\Delete.cshtml" />
     <Content Include="Views\Habitaciones\Details.cshtml" />
@@ -256,6 +252,13 @@
     <Content Include="Views\Citas\Details.cshtml" />
     <Content Include="Views\Citas\Edit.cshtml" />
     <Content Include="Views\Citas\Index.cshtml" />
+    <Content Include="Views\AltaMedica\DarDeAlta.cshtml" />
+    <Content Include="Views\AltaMedica\Delete.cshtml" />
+    <Content Include="Views\AltaMedica\Details.cshtml" />
+    <Content Include="Views\AltaMedica\Edit.cshtml" />
+    <Content Include="Views\AltaMedica\Index.cshtml" />
+    <Content Include="Views\AltaMedica\indexcreate.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

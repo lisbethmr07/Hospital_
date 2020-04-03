@@ -20,6 +20,26 @@ namespace Hospital.Controllers
             var altaMedica = db.AltaMedica.Include(a => a.Habitaciones).Include(a => a.Ingresos).Include(a => a.Pacientes);
             return View(altaMedica.ToList());
         }
+        public ActionResult Indexcreate()
+        {
+            var ingresos = db.Ingresos.Include(i => i.Habitaciones).Include(i => i.Pacientes);
+            return View(ingresos.ToList());
+        }
+        public ActionResult DarDeAlta(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Ingresos ingresos = db.Ingresos.Find(id);
+            if (ingresos == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "tipo", ingresos.idHabitacion);
+            ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", ingresos.idPaciente);
+            return View(ingresos);
+        }
 
         // GET: AltaMedica/Details/5
         public ActionResult Details(int? id)
@@ -43,6 +63,32 @@ namespace Hospital.Controllers
             ViewBag.idIngreso = new SelectList(db.Ingresos, "idIngreso", "idIngreso");
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula");
             return View();
+        }
+        [HttpPost]
+        public JsonResult DarDeAlta(AltaMedica DatosA)
+        {
+
+            var success = 1;
+
+            using (var context = new HospitalEntities())
+            {
+                AltaMedica altaMedica = new AltaMedica()
+                {
+                    idIngreso = DatosA.idIngreso,
+                    idPaciente = DatosA.idPaciente,
+                    idHabitacion = DatosA.idHabitacion,
+                    fechaIngreso = DatosA.fechaIngreso,
+                    fechaSalida = DatosA.fechaSalida,
+                    monto = DatosA.monto
+
+                };
+
+                context.AltaMedica.Add(altaMedica);
+                context.SaveChanges();
+
+
+                return Json(success);
+            }
         }
 
         // POST: AltaMedica/Create
