@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Habitaciones.tipo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pacientes.cedula)
+            @Html.DisplayNameFor(model => model.Pacientes.nombre)
         </th>
         <th></th>
     </tr>
@@ -26,13 +26,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.fecha)
+            @Html.DisplayFor(modelItem => item.fecha, "ShortDateTime")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Habitaciones.tipo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Pacientes.cedula)
+            @Html.DisplayFor(modelItem => item.Pacientes.nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idIngreso }) |
