@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AltaMedica">
+    <Key>
+      <PropertyRef Name="idAlta" />
+    </Key>
+    <Property Name="idAlta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idIngreso" Type="int" />
+    <Property Name="idPaciente" Type="int" />
+    <Property Name="idHabitacion" Type="int" />
+    <Property Name="fechaIngreso" Type="date" />
+    <Property Name="fechaSalida" Type="date" />
+    <Property Name="monto" Type="money" />
+  </EntityType>
+  <EntityType Name="Citas">
+    <Key>
+      <PropertyRef Name="idCita" />
+    </Key>
+    <Property Name="idCita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idMedico" Type="int" />
+    <Property Name="idPaciente" Type="int" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="hora" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="Habitaciones">
+    <Key>
+      <PropertyRef Name="idHabitacion" />
+    </Key>
+    <Property Name="idHabitacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="numero" Type="int" />
+    <Property Name="tipo" Type="varchar" MaxLength="10" />
+    <Property Name="precioDia" Type="money" />
+  </EntityType>
+  <EntityType Name="Ingresos">
+    <Key>
+      <PropertyRef Name="idIngreso" />
+    </Key>
+    <Property Name="idIngreso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPaciente" Type="int" />
+    <Property Name="idHabitacion" Type="int" />
+    <Property Name="fecha" Type="date" />
+  </EntityType>
+  <EntityType Name="Medicos">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="60" />
+    <Property Name="exequater" Type="varchar" MaxLength="20" />
+    <Property Name="especialidad" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="Pacientes">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="idPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="11" />
+    <Property Name="nombre" Type="varchar" MaxLength="60" />
+    <Property Name="asegurado" Type="bit" />
+  </EntityType>
+  <Association Name="FK__AltaMedic__idHab__2E1BDC42">
+    <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="0..1" />
+    <End Role="AltaMedica" Type="Self.AltaMedica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitaciones">
+        <PropertyRef Name="idHabitacion" />
+      </Principal>
+      <Dependent Role="AltaMedica">
+        <PropertyRef Name="idHabitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AltaMedic__idIng__2F10007B">
+    <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="0..1" />
+    <End Role="AltaMedica" Type="Self.AltaMedica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingresos">
+        <PropertyRef Name="idIngreso" />
+      </Principal>
+      <Dependent Role="AltaMedica">
+        <PropertyRef Name="idIngreso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AltaMedic__idPac__300424B4">
+    <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="0..1" />
+    <End Role="AltaMedica" Type="Self.AltaMedica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="AltaMedica">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Citas__idMedico__30F848ED">
+    <End Role="Medicos" Type="Self.Medicos" Multiplicity="0..1" />
+    <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Citas__idPacient__31EC6D26">
+    <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="0..1" />
+    <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ingresos__idHabi__32E0915F">
+    <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="0..1" />
+    <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitaciones">
+        <PropertyRef Name="idHabitacion" />
+      </Principal>
+      <Dependent Role="Ingresos">
+        <PropertyRef Name="idHabitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ingresos__idPaci__33D4B598">
+    <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="0..1" />
+    <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="Ingresos">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Usp_DarDeAlta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idIngreso" Type="int" Mode="In" />
+    <Parameter Name="idPaciente" Type="int" Mode="In" />
+    <Parameter Name="idHabitacion" Type="int" Mode="In" />
+    <Parameter Name="fechaIngreso" Type="date" Mode="In" />
+    <Parameter Name="fechaSalida" Type="date" Mode="In" />
+    <Parameter Name="monto" Type="money" Mode="In" />
+  </Function>
+  <EntityContainer Name="HospitalModelStoreContainer">
+    <EntitySet Name="AltaMedica" EntityType="Self.AltaMedica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Citas" EntityType="Self.Citas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Habitaciones" EntityType="Self.Habitaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ingresos" EntityType="Self.Ingresos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pacientes" EntityType="Self.Pacientes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AltaMedic__idHab__2E1BDC42" Association="Self.FK__AltaMedic__idHab__2E1BDC42">
+      <End Role="Habitaciones" EntitySet="Habitaciones" />
+      <End Role="AltaMedica" EntitySet="AltaMedica" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AltaMedic__idIng__2F10007B" Association="Self.FK__AltaMedic__idIng__2F10007B">
+      <End Role="Ingresos" EntitySet="Ingresos" />
+      <End Role="AltaMedica" EntitySet="AltaMedica" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AltaMedic__idPac__300424B4" Association="Self.FK__AltaMedic__idPac__300424B4">
+      <End Role="Pacientes" EntitySet="Pacientes" />
+      <End Role="AltaMedica" EntitySet="AltaMedica" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Citas__idMedico__30F848ED" Association="Self.FK__Citas__idMedico__30F848ED">
+      <End Role="Medicos" EntitySet="Medicos" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Citas__idPacient__31EC6D26" Association="Self.FK__Citas__idPacient__31EC6D26">
+      <End Role="Pacientes" EntitySet="Pacientes" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingresos__idHabi__32E0915F" Association="Self.FK__Ingresos__idHabi__32E0915F">
+      <End Role="Habitaciones" EntitySet="Habitaciones" />
+      <End Role="Ingresos" EntitySet="Ingresos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingresos__idPaci__33D4B598" Association="Self.FK__Ingresos__idPaci__33D4B598">
+      <End Role="Pacientes" EntitySet="Pacientes" />
+      <End Role="Ingresos" EntitySet="Ingresos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
