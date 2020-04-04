@@ -17,7 +17,8 @@ namespace Hospital.Controllers
         // GET: Habitaciones
         public ActionResult Index()
         {
-            return View(db.Habitaciones.ToList());
+            var habitaciones = db.Habitaciones.Include(h => h.TipoH);
+            return View(habitaciones.ToList());
         }
 
         // GET: Habitaciones/Details/5
@@ -38,6 +39,7 @@ namespace Hospital.Controllers
         // GET: Habitaciones/Create
         public ActionResult Create()
         {
+            ViewBag.idTipo = new SelectList(db.TipoH, "idTipo", "descripcion");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace Hospital.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idHabitacion,numero,tipo,precioDia")] Habitaciones habitaciones)
+        public ActionResult Create([Bind(Include = "idHabitacion,idTipo,numero")] Habitaciones habitaciones)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace Hospital.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idTipo = new SelectList(db.TipoH, "idTipo", "descripcion", habitaciones.idTipo);
             return View(habitaciones);
         }
 
@@ -70,6 +73,7 @@ namespace Hospital.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idTipo = new SelectList(db.TipoH, "idTipo", "descripcion", habitaciones.idTipo);
             return View(habitaciones);
         }
 
@@ -78,7 +82,7 @@ namespace Hospital.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idHabitacion,numero,tipo,precioDia")] Habitaciones habitaciones)
+        public ActionResult Edit([Bind(Include = "idHabitacion,idTipo,numero")] Habitaciones habitaciones)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace Hospital.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idTipo = new SelectList(db.TipoH, "idTipo", "descripcion", habitaciones.idTipo);
             return View(habitaciones);
         }
 

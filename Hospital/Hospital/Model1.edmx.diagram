@@ -7,17 +7,19 @@
       <Diagram DiagramId="1fa4fdf787134d21bf3ff183f00cebf0" Name="Diagram1">
         <EntityTypeShape EntityType="HospitalModel.AltaMedica" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalModel.Citas" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalModel.Habitaciones" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalModel.Ingresos" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalModel.Medicos" Width="1.5" PointX="3.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalModel.Pacientes" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="HospitalModel.FK__AltaMedic__idHab__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalModel.FK__AltaMedic__idIng__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalModel.FK__AltaMedic__idPac__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalModel.FK__Citas__idMedico__30F848ED" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalModel.FK__Citas__idPacient__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalModel.FK__Ingresos__idHabi__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalModel.FK__Ingresos__idPaci__33D4B598" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HospitalModel.Habitaciones" Width="1.5" PointX="7.625" PointY="0.875" />
+        <AssociationConnector Association="HospitalModel.FK__AltaMedic__idHab__30F848ED" />
+        <AssociationConnector Association="HospitalModel.FK__Ingresos__idHabi__35BCFE0A" />
+        <EntityTypeShape EntityType="HospitalModel.TipoH" Width="1.5" PointX="5.375" PointY="1.75" />
+        <AssociationConnector Association="HospitalModel.FK__Habitacio__idTip__300424B4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

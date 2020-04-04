@@ -27,7 +27,7 @@ namespace Hospital
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AltaMedica> AltaMedica { get; set; }
-        public virtual Habitaciones Habitaciones { get; set; }
         public virtual Pacientes Pacientes { get; set; }
+        public virtual Habitaciones Habitaciones { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace Hospital.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "tipo", ingresos.idHabitacion);
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idTipo", ingresos.idHabitacion);
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", ingresos.idPaciente);
             return View(ingresos);
         }
@@ -123,7 +123,7 @@ namespace Hospital.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "tipo", altaMedica.idHabitacion);
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idHabitacion", altaMedica.idHabitacion);
             ViewBag.idIngreso = new SelectList(db.Ingresos, "idIngreso", "idIngreso", altaMedica.idIngreso);
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", altaMedica.idPaciente);
             return View(altaMedica);

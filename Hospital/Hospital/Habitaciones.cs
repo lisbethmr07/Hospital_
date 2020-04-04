@@ -22,13 +22,13 @@ namespace Hospital
         }
     
         public int idHabitacion { get; set; }
+        public Nullable<int> idTipo { get; set; }
         public Nullable<int> numero { get; set; }
-        public string tipo { get; set; }
-        public Nullable<decimal> precioDia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AltaMedica> AltaMedica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ingresos> Ingresos { get; set; }
+        public virtual TipoH TipoH { get; set; }
     }
 }

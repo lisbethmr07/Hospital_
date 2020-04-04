@@ -25,16 +25,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Habitaciones">
-      <EntityTypeMapping TypeName="HospitalModel.Habitaciones">
-        <MappingFragment StoreEntitySet="Habitaciones">
-          <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
-          <ScalarProperty Name="numero" ColumnName="numero" />
-          <ScalarProperty Name="tipo" ColumnName="tipo" />
-          <ScalarProperty Name="precioDia" ColumnName="precioDia" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Ingresos">
       <EntityTypeMapping TypeName="HospitalModel.Ingresos">
         <MappingFragment StoreEntitySet="Ingresos">
@@ -66,5 +56,23 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="Usp_DarDeAlta" FunctionName="HospitalModel.Store.Usp_DarDeAlta" />
+    <EntitySetMapping Name="Habitaciones">
+      <EntityTypeMapping TypeName="HospitalModel.Habitaciones">
+        <MappingFragment StoreEntitySet="Habitaciones">
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+          <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoH">
+      <EntityTypeMapping TypeName="HospitalModel.TipoH">
+        <MappingFragment StoreEntitySet="TipoH">
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

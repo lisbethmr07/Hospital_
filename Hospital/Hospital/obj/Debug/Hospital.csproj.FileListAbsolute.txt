@@ -88,3 +88,4 @@ C:\Users\Elizabeth Martinez\source\repos\lisbethmr07\Hospital_\Hospital\Hospital
 C:\Users\Elizabeth Martinez\source\repos\lisbethmr07\Hospital_\Hospital\Hospital\obj\Debug\Hospital.csproj.CopyComplete
 C:\Users\Elizabeth Martinez\source\repos\lisbethmr07\Hospital_\Hospital\Hospital\obj\Debug\Hospital.dll
 C:\Users\Elizabeth Martinez\source\repos\lisbethmr07\Hospital_\Hospital\Hospital\obj\Debug\Hospital.pdb
+C:\Users\Elizabeth Martinez\source\repos\lisbethmr07\Hospital_\Hospital\Hospital\bin\DataTables.Mvc.dll

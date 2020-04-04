@@ -29,10 +29,11 @@ namespace Hospital
     
         public virtual DbSet<AltaMedica> AltaMedica { get; set; }
         public virtual DbSet<Citas> Citas { get; set; }
-        public virtual DbSet<Habitaciones> Habitaciones { get; set; }
         public virtual DbSet<Ingresos> Ingresos { get; set; }
         public virtual DbSet<Medicos> Medicos { get; set; }
         public virtual DbSet<Pacientes> Pacientes { get; set; }
+        public virtual DbSet<Habitaciones> Habitaciones { get; set; }
+        public virtual DbSet<TipoH> TipoH { get; set; }
     
         public virtual int Usp_DarDeAlta(Nullable<int> idIngreso, Nullable<int> idPaciente, Nullable<int> idHabitacion, Nullable<System.DateTime> fechaIngreso, Nullable<System.DateTime> fechaSalida, Nullable<decimal> monto)
         {

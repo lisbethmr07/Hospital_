@@ -17,7 +17,7 @@ namespace Hospital.Controllers
         // GET: Ingresos
         public ActionResult Index()
         {
-            var ingresos = db.Ingresos.Include(i => i.Habitaciones).Include(i => i.Pacientes);
+            var ingresos = db.Ingresos.Include(i => i.Pacientes).Include(i => i.Habitaciones);
             return View(ingresos.ToList());
         }
 
@@ -39,8 +39,8 @@ namespace Hospital.Controllers
         // GET: Ingresos/Create
         public ActionResult Create()
         {
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "tipo");
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula");
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idHabitacion");
             return View();
         }
 
@@ -58,8 +58,8 @@ namespace Hospital.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "tipo", ingresos.idHabitacion);
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", ingresos.idPaciente);
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idHabitacion", ingresos.idHabitacion);
             return View(ingresos);
         }
 
@@ -75,8 +75,8 @@ namespace Hospital.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "tipo", ingresos.idHabitacion);
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", ingresos.idPaciente);
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idHabitacion", ingresos.idHabitacion);
             return View(ingresos);
         }
 
@@ -93,8 +93,8 @@ namespace Hospital.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "tipo", ingresos.idHabitacion);
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", ingresos.idPaciente);
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idHabitacion", ingresos.idHabitacion);
             return View(ingresos);
         }
 

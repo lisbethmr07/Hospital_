@@ -22,8 +22,8 @@ namespace Hospital
         public Nullable<System.DateTime> fechaSalida { get; set; }
         public Nullable<decimal> monto { get; set; }
     
-        public virtual Habitaciones Habitaciones { get; set; }
         public virtual Ingresos Ingresos { get; set; }
         public virtual Pacientes Pacientes { get; set; }
+        public virtual Habitaciones Habitaciones { get; set; }
     }
 }
